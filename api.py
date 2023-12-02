@@ -59,7 +59,6 @@ def postInfo():
 def update(uuid):
     try:
         data = request.get_json()
-        user_location = data.get("location")
         user_temp = data.get("temp")
         user_wet = data.get("wet")
         user_purple = data.get("purple")
@@ -68,9 +67,9 @@ def update(uuid):
         if data:
             localtime = time.localtime()
             update_data_sql = """
-            UPDATE weather_data SET location = ?, temp = ?, wet = ?, purple = ?, water = ?, time=? WHERE uuid = ?
+            UPDATE weather_data SET temp = ?, wet = ?, purple = ?, water = ?, time=? WHERE uuid = ?
             """
-            cursor.execute(update_data_sql, (user_location, user_temp, user_wet, user_purple, user_water,time.strftime("%Y-%m-%d %I:%M:%S %p", localtime), uuid))
+            cursor.execute(update_data_sql, (user_temp, user_wet, user_purple, user_water,time.strftime("%Y-%m-%d %I:%M:%S %p", localtime), uuid))
             connection.commit()
             return jsonify({'message': 'User success', 'uuid': str(uuid)})
         else:

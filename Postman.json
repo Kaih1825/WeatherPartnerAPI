@@ -108,7 +108,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"location\": \"abc\",\n    \"temp\": \"21.5\",\n    \"wet\": \"61\",\n    \"purple\": \"0\",\n    \"water\": \"Yes\"\n}",
+					"raw": "{\n    \"temp\": \"21.5\",\n    \"wet\": \"61\",\n    \"purple\": \"0\",\n    \"water\": \"Yes\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
