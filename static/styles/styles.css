@@ -1,0 +1,85 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+  padding-top: 80px;
+}
+
+.navbar {
+  background-color: #343a40;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  color: #343a40;
+  margin-bottom: 20px;
+}
+
+h2 {
+  color: #343a40;
+  margin-top: 30px;
+}
+
+pre {
+  background-color: #eee;
+  padding: 15px;
+  border-radius: 10px;
+  overflow-x: auto;
+}
+
+.CodePre{
+  background-color: #dbdbdb;
+  padding: 15px;
+  border-radius: 5px;
+  border-radius: 10px;
+  overflow-x: auto;
+}
+
+.collapse-content {
+  display: none;
+}
+
+.collapse-content.show {
+  display: block;
+}
+
+.collapsible {
+  margin-top: 10px;
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  border-radius: 10px;
+}
+
+.active,
+.collapsible:hover {
+  background-color: #ccc;
+}
+
+.content {
+  padding: 18px 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+  border-radius: 10px;
+}
