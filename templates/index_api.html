@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather Partner API 文件</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/dracula.min.css">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/styles.css') }}">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Weather Partner API</a>
+    </div>
+  </nav>
+
+  <div class="container mt-5">
+    <h1>Weather Partner API 文件</h1>
+    <p class="lead">歡迎使用Weather Partner API 文件！這個 API 允許您與天氣資料進行交互。</p>
+
+    <h2 id="base-url">基礎 URL</h2>
+    <pre>http://your-base-url.com</pre>
+
+    <h2 id="endpoints">端點</h2>
+
+    
+    <button class="collapsible">POST /data</button>
+    <div class="content" id="post-details">
+      <div>
+        <p><strong>描述：</strong> 將天氣資料發送至伺服器。</p>
+        <p><strong>請求主體：</strong></p>
+        <ul>
+          <li>`location`（字串，必填）：位置名稱</li>
+          <li>`temp`（字串，必填）：溫度</li>
+          <li>`wet`（字串，必填）：濕度</li>
+          <li>`purple`（字串，必填）：紫外線指數</li>
+          <li>`water`（字串，必填）：是否有在降雨</li>
+        </ul>
+        <p><strong>回應：</strong></p>
+        <pre class="CodePre">
+<code class="json">{
+  "message": "User success",
+  "uuid": "&lt;generated UUID&gt;"
+}</code></pre>
+      </div>
+    </div>
+
+
+    <button class="collapsible">PUT /data/&lt;uuid&gt;</button>
+    <div class="content" id="post-details">
+      <div>
+        <p><strong>描述：</strong> 透過 UUID 更新天氣資料。</p>
+        <p><strong>路徑參數：</strong></p>
+        <ul>
+          <li>`uuid`（字串，必填）：資料的唯一識別碼</li>
+        </ul>
+        <p><strong>請求主體：</strong></p>
+        <ul>
+          <li>同 POST `/data`</li>
+        </ul>
+        <p><strong>回應：</strong></p>
+        <pre class="CodePre">
+<code class="json">{
+  "message": "User success",
+  "uuid": "&lt;updated UUID&gt;"
+}</code></pre>
+      </div>
+    </div>
+
+
+    <button class="collapsible">GET /data</button>
+    <div class="content" id="post-details">
+      <div>
+        <p><strong>描述：</strong> 獲取所有天氣資料。</p>
+        <p><strong>回應：</strong></p>
+        <pre class="CodePre">
+<code class="json">{
+  "data": [
+    {
+      "uuid": "&lt;UUID&gt;",
+      "location": "&lt;location&gt;"
+    },
+    // 更多資料...
+  ]
+}</code></pre>
+      </div>
+    </div>
+
+
+    <button class="collapsible">GET /data/&lt;uuid&gt;</button>
+    <div class="content" id="post-details">
+      <div>
+        <p><strong>描述：</strong> 透過 UUID 獲取天氣資料。</p>
+        <p><strong>路徑參數：</strong></p>
+        <ul>
+          <li>`uuid`（字串，必填）：資料的唯一識別碼</li>
+        </ul>
+        <p><strong>回應：</strong></p>
+        <pre class="CodePre">
+<code class="json">{
+  "data": [
+    {
+      "uuid": "&lt;UUID&gt;",
+      "time": "&lt;timestamp&gt;",
+      "location": "&lt;location&gt;",
+      "temp": "&lt;temperature&gt;",
+      "wet": "&lt;wetness&gt;",
+      "purple": "&lt;purple-level&gt;",
+      "water": "&lt;water-level&gt;"
+    }
+  ]
+}</code></pre>
+      </div>
+    </div>
+
+
+    <button class="collapsible">DELETE /data/&lt;uuid&gt;</button>
+    <div class="content" id="post-details">
+      <div>
+        <p><strong>描述：</strong> 透過 UUID 刪除天氣資料。</p>
+        <p><strong>路徑參數：</strong></p>
+        <ul>
+          <li>`uuid`（字串，必填）：資料的唯一識別碼</li>
+        </ul>
+        <p><strong>回應：</strong></p>
+        <pre class="CodePre">
+<code class="json">{
+  "message": "資料與 UUID '&lt;uuid&gt;' 已成功刪除"
+}</code></pre>
+      </div>
+    </div>
+
+    <script src="{{ url_for('static',filename='scripts.js') }}"> </script>
+
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const codeBlocks = document.querySelectorAll('code');
+      codeBlocks.forEach((codeBlock) => {
+        hljs.highlightBlock(codeBlock);
+      });
+
+      const collapseButtons = document.querySelectorAll('[data-toggle="collapse"]');
+      collapseButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          const target = button.getAttribute('data-target');
+          document.querySelector(target).classList.toggle('show');
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>
