@@ -35,10 +35,6 @@ def postInfo():
     try:
         data = request.get_json()
         user_location = data.get("location")
-        user_temp = data.get("temp")
-        user_wet = data.get("wet")
-        user_purple = data.get("purple")
-        user_water = data.get("water")
 
         if data:
             U = uuid.uuid1()
@@ -48,7 +44,7 @@ def postInfo():
             INSERT INTO weather_data (uuid , time, location, temp, wet, purple, water)
             VALUES (?, ?, ?, ?, ?, ?, ?)
             """
-            cursor.execute(insert_data_sql, (str(U), result, user_location, user_temp, user_wet, user_purple, user_water))
+            cursor.execute(insert_data_sql, (str(U), result, user_location, 0, 0, 0, 0))
             connection.commit()
             return jsonify({'message': 'User success', 'uuid': str(U)})
         else:
