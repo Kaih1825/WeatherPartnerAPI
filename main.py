@@ -137,8 +137,11 @@ def delete_uuid_data(uuid):
 
 
 if __name__ == "__main__":
-    CORS(app)
-    app.run(host='0.0.0.0',port=443,ssl_context= ('fullchain.pem', 'privkey.pem'))
+    try:
+        CORS(app)
+        app.run(host='0.0.0.0',port=443,ssl_context= ('fullchain.pem', 'privkey.pem'))
+    except Exception as e:
+        print(e)
 
 cursor.close()
 connection.close()
