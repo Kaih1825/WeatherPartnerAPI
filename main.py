@@ -3,6 +3,7 @@ from flask import Flask, jsonify, request,render_template,send_from_directory
 import sqlite3
 import time
 from flask_cors import CORS
+import gc
 
 app = Flask(__name__)
 database = "weather.db"
@@ -139,6 +140,7 @@ def delete_uuid_data(uuid):
 if __name__ == "__main__":
     try:
         CORS(app)
+        gc.enable()
         app.run(host='0.0.0.0',port=443,ssl_context= ('fullchain.pem', 'privkey.pem'))
     except Exception as e:
         print(e)
