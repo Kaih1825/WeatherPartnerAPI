@@ -64,7 +64,7 @@ def update(uuid):
         user_purple = data.get("purple")
         user_water = data.get("water")
         
-        if data:
+        if data and data.get("key")=="V2VhdGhlclBhcnRuZXJBcGlLZXlPcmFuZ2VQaTVC":
             localtime = time.localtime()
             update_data_sql = """
             UPDATE weather_data SET location = ?, temp = ?, wet = ?, purple = ?, water = ?, time=? WHERE uuid = ?
@@ -127,11 +127,15 @@ def get_uuid_data(uuid):
 @app.delete("/data/<string:uuid>")
 def delete_uuid_data(uuid):
     try:
-        delete_uuid_data_sql = "DELETE FROM weather_data WHERE uuid = ?"
-        cursor.execute(delete_uuid_data_sql, (uuid,))
-        connection.commit()
+        data=request.get_json()
+        if data.get("key")=="V2VhdGhlclBhcnRuZXJBcGlLZXlPcmFuZ2VQaTVC":
+            delete_uuid_data_sql = "DELETE FROM weather_data WHERE uuid = ?"
+            cursor.execute(delete_uuid_data_sql, (uuid,))
+            connection.commit()
 
-        return jsonify({'message': f'Data with UUID "{uuid}" deleted successfully'})
+            return jsonify({'message': f'Data with UUID "{uuid}" deleted successfully'})
+        else:
+            return jsonify({'error': ' Data Error'}), 400
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
