@@ -37,7 +37,7 @@ def postInfo():
         data = request.get_json()
         user_location = data.get("location")
 
-        if data:
+        if data and data.get("key")=="V2VhdGhlclBhcnRuZXJBcGlLZXlPcmFuZ2VQaTVC":
             U = uuid.uuid1()
             localtime = time.localtime()
             result = time.strftime("%Y-%m-%d %I:%M:%S %p", localtime)
@@ -49,7 +49,7 @@ def postInfo():
             connection.commit()
             return jsonify({'message': 'User success', 'uuid': str(U)})
         else:
-            return jsonify({'error': ' 你最好她媽看好你的資料低能兒'}), 400
+            return jsonify({'error': ' Data Error'}), 400
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
@@ -73,7 +73,7 @@ def update(uuid):
             connection.commit()
             return jsonify({'message': 'User success', 'uuid': str(uuid)})
         else:
-            return jsonify({'error': ' 你最好她媽看好你的資料低能兒'}), 400
+            return jsonify({'error': ' Data Error'}), 400
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
