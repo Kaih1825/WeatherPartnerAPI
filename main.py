@@ -98,7 +98,7 @@ def getall():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-#Get data by location
+#Get data by uuid
 @app.get("/data/<string:uuid>")
 def get_uuid_data(uuid):
     try:
