@@ -123,7 +123,7 @@ def get_uuid_data(uuid):
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-#Delete data by location
+#Delete data by uuid
 @app.delete("/data/<string:uuid>")
 def delete_uuid_data(uuid):
     try:
